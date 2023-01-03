@@ -4,8 +4,6 @@ import (
 	"errors"
 	"os"
 	"strings"
-
-	"github.com/fosskey/cli/internal/cipher"
 )
 
 // Read and decrypt the content of the vault
@@ -23,7 +21,7 @@ func read(masterkey string) (map[string]string, error) {
 	}
 
 	// Decrypt
-	decryptedBytes, err := cipher.Decrypt([]byte(masterkey), encryptedBytes)
+	decryptedBytes, err := decrypt([]byte(masterkey), encryptedBytes)
 	if err != nil {
 		return nil, errors.New("AuthFailed")
 	}

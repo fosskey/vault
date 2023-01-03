@@ -1,4 +1,4 @@
-package cipher
+package vault
 
 import (
 	"crypto/rand"
@@ -25,7 +25,7 @@ var config = struct {
 	saltlen: 16,              // 128-bit salt
 }
 
-func Encrypt(password, plaintext []byte) ([]byte, error) {
+func encrypt(password, plaintext []byte) ([]byte, error) {
 
 	// Generate random salt and Argon2id key from the password
 	key, salt, err := deriveKey(password, nil)
@@ -54,7 +54,7 @@ func Encrypt(password, plaintext []byte) ([]byte, error) {
 	return ciphertext, nil
 }
 
-func Decrypt(password, ciphertext []byte) ([]byte, error) {
+func decrypt(password, ciphertext []byte) ([]byte, error) {
 
 	// Split salt and ciphertext
 	salt, ciphertext := ciphertext[len(ciphertext)-config.saltlen:], ciphertext[:len(ciphertext)-config.saltlen]

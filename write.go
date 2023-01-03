@@ -3,8 +3,6 @@ package vault
 import (
 	"os"
 	"strings"
-
-	"github.com/fosskey/cli/internal/cipher"
 )
 
 // Encrypt entries and write them into the vault
@@ -25,7 +23,7 @@ func write(masterkey string, entries map[string]string) error {
 	content = strings.Trim(content, "\n")
 
 	// Encrypt
-	encryptedData, err := cipher.Encrypt([]byte(masterkey), []byte(content))
+	encryptedData, err := encrypt([]byte(masterkey), []byte(content))
 	if err != nil {
 		return err
 	}

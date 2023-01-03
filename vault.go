@@ -3,7 +3,6 @@ package vault
 import (
 	"fmt"
 	"os"
-	"path"
 	"path/filepath"
 	"strings"
 )
@@ -37,8 +36,7 @@ func init() {
 func setPaths() {
 	if strings.HasSuffix(os.Args[0], ".test") {
 		// Test case
-		f, _ := os.Getwd()
-		rootPath := path.Join(f, "..", "..")
+		rootPath, _ := os.Getwd()
 		fossPath = filepath.Join(rootPath, ".foss")
 	} else {
 		// Run case

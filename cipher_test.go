@@ -1,4 +1,4 @@
-package cipher
+package vault
 
 import (
 	"bytes"
@@ -9,7 +9,7 @@ func TestCipher(t *testing.T) {
 	var password = []byte("MyP@ssw0rd")
 	var message = []byte("Hello World!")
 
-	ciphertext, err := Encrypt(password, message)
+	ciphertext, err := encrypt(password, message)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -18,7 +18,7 @@ func TestCipher(t *testing.T) {
 		t.Fatal("Encrypted result must be longer than the original message")
 	}
 
-	plaintext, err := Decrypt(password, ciphertext)
+	plaintext, err := decrypt(password, ciphertext)
 	if err != nil {
 		t.Fatal(err)
 	}
